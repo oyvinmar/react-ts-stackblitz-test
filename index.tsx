@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import Hello from './Hello';
 import {Collapse} from 'react-collapse';
@@ -9,24 +9,17 @@ interface AppState {
   name: string;
 }
 
-class App extends Component<AppProps, AppState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'React'
-    };
-  }
-
-  render() {
+const App = () => {
+const [open, setOpen] = useState(false);
     return (
       <div>
-        <Hello name={this.state.name} />
-        <p>
+        <Hello name="React" />
+        <button onClick={() => setOpen(!open)}>Toggle</button>
+        <Collapse isOpened={open}>
           Start editing to see some magic happen :)
-        </p>
+        </Collapse>
       </div>
     );
-  }
 }
 
 render(<App />, document.getElementById('root'));
